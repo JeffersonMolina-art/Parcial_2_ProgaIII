@@ -23,7 +23,6 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task create(Task task) {
-        taskDao.save(task);
         return taskDao.save(task);
     }
 
@@ -31,7 +30,7 @@ public class TaskServiceImpl implements TaskService{
     public Task modify(Long id, Task task) {
         if(taskDao.existsById(id)){
             task.setId(id);
-            taskDao.save(task);
+
         }
         return taskDao.save(task);
     }

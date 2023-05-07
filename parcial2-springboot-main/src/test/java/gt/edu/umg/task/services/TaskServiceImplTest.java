@@ -124,8 +124,11 @@ class TaskServiceImplTest {
         task1.setDueDate(Date.from(atStartOfDayResult1.atZone(ZoneId.of("UTC")).toInstant()));
         task1.setId(123L);
         task1.setTittle("Tittle");
-        assertNull(taskServiceImpl.modify(123L, task1));
+        assertSame(task, taskServiceImpl.modify(123L, task1));
         verify(taskDao).existsById((Long) any());
+        verify(taskDao).save((Task) any());
+        assertEquals(123L, task1.getId().longValue());
+
     }
 
     /**
